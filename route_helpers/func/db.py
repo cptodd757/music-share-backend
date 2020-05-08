@@ -10,3 +10,6 @@ def find_one(query):
 def insert_one(query):
     return users.insert_one(query)
 
+def update_one(search, update):
+    return users.update_one(search, update)
+

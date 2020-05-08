@@ -19,7 +19,9 @@ def register_helper(request):
                     'message':'User already exists. Please login.'}, 202
     
     # user doesn't already exist
-    db.insert_one({"username":username,"password":hash_alg(password).encode()})
+    db.insert_one({"username":username,
+                   "password":hash_alg(password).encode(),
+                   "friends":[]})
 
     return {'access_token':create_access_token(username),
                     'message':'Account created!'}, 200

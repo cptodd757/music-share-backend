@@ -1,17 +1,19 @@
 from flask import Flask, jsonify, redirect, request
 from flask_cors import CORS
-# from flask_bcrypt import Bcrypt
-from base64 import b64decode
 import json
 import sys
 
 sys.path.append('./route_helpers')
 from login_helper import login_helper
 from register_helper import register_helper
+from add_friend_helper import add_friend_helper
 
 app = Flask(__name__)
 CORS(app)
-# bcrypt = Bcrypt(app)
+
+# @app.errorhandler(Exception)
+# def error_handler(error):
+#     return jsonify(error=400, message=str(error))
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -33,6 +35,11 @@ def register():
     print(ans)
     return ans
 
+@app.route('/api/add_friend',methods=['GET','POST'])
+def add_friend():
+    ans = add_friend_helper(request)
+    print(ans)
+    return ans
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=4000)
