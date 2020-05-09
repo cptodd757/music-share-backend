@@ -25,14 +25,16 @@ def add_friend_helper(request):
     # add desired friend to user's friend list
     friends = db.find_one({"username":user})["friends"]
     new_friend = {"username":friend_username,
-                  "songs":[]}
+                  "songsReceived":[],
+                  "songsSent":[]}
     friends.append(new_friend) 
     db.update_one({"username":user},{"$set":{"friends":friends}})
 
     # add user to the other friend's friend list
     other_friends = db.find_one({"username":friend_username})["friends"]
     other_friends.append({"username":user,
-                          "songs":[]})
+                          "songsReceived":[],
+                          "songsSent":[]})
     db.update_one({"username":friend_username},{"$set":{"friends":other_friends}})
     
     return {"message":"friend added!"}, 200

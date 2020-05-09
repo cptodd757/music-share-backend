@@ -42,14 +42,24 @@ def add_track_helper(request):
         # songlist = db.find_one({"username":body["friend_username"]})["songs"]
         # songlist.append(entry)
 
+        # update friend's list of received songs
         db.update_one({"username": body["friend_username"], "friends.username": user},
         { "$push": 
-            {"friends.$.songs": 
+            {"friends.$.songsReceived": 
+                entry
+            }
+        })
+
+        # update user's list of sent songs
+        db.update_one({"username": user, "friends.username": body["friend_username"]},
+        { "$push": 
+            {"friends.$.songsSent": 
                 entry
             }
         })
         return {"message":"Song added!"}, 200
-    except Exception:
+    except Exception as e:
+        print(e)
         return {"message":"Something went wrong"},500
 
     
