@@ -8,13 +8,19 @@ import db
 # TODO: friend REQUESTS, not just auto-add
 # request["Authorization"] will be Bearer <access_token>
 def add_friend_helper(request):
+    # check access token
     user = authorize(request)
     if not user:
         return {"message":"Not authorized!"}, 401
 
+    # check to see that desired friend exists
     friend_username = loads(request.data)["friend_username"]
     if not db.find_one({"username":friend_username}):
         return {"message":"Friend does not exist"}, 404
+
+    # check that friend isnt already in friend's list
+    if db.find_one({"username":user,"friends":{"$elemMatch": {"username":friend_username}}}):
+        return {"message":"Already friends with this user"}, 202
 
     # add desired friend to user's friend list
     friends = db.find_one({"username":user})["friends"]

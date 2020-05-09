@@ -8,6 +8,7 @@ from login_helper import login_helper
 from register_helper import register_helper
 from add_friend_helper import add_friend_helper
 from add_track_helper import add_track_helper
+from get_friends_helper import get_friends_helper
 
 app = Flask(__name__)
 CORS(app)
@@ -16,9 +17,6 @@ CORS(app)
 def index():
     return {'hello':'world'}
 
-# TODO: Return 200 code and api token (in body of response) if username and password match
-# Return 204 code if dont match
-# return 404 (?) if user not found
 @app.route('/api/login',methods=['GET','POST'])
 def login():
     #print('request: ', b64decode(request.headers['Authorization']))
@@ -41,6 +39,12 @@ def add_friend():
 @app.route('/api/add_track',methods=['GET','POST'])
 def add_track():
     ans = add_track_helper(request)
+    print(ans)
+    return ans
+
+@app.route('/api/get_friends',methods=['GET'])
+def get_friends():
+    ans = get_friends_helper(request)
     print(ans)
     return ans
 
