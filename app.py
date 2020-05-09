@@ -7,13 +7,10 @@ sys.path.append('./route_helpers')
 from login_helper import login_helper
 from register_helper import register_helper
 from add_friend_helper import add_friend_helper
+from add_track_helper import add_track_helper
 
 app = Flask(__name__)
 CORS(app)
-
-# @app.errorhandler(Exception)
-# def error_handler(error):
-#     return jsonify(error=400, message=str(error))
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -38,6 +35,12 @@ def register():
 @app.route('/api/add_friend',methods=['GET','POST'])
 def add_friend():
     ans = add_friend_helper(request)
+    print(ans)
+    return ans
+
+@app.route('/api/add_track',methods=['GET','POST'])
+def add_track():
+    ans = add_track_helper(request)
     print(ans)
     return ans
 
