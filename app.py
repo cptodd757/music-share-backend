@@ -9,6 +9,7 @@ from register_helper import register_helper
 from add_friend_helper import add_friend_helper
 from add_track_helper import add_track_helper
 from get_friends_helper import get_friends_helper
+from accept_friend_request_helper import accept_friend_request_helper
 
 app = Flask(__name__)
 CORS(app)
@@ -45,6 +46,12 @@ def add_track():
 @app.route('/api/get_friends',methods=['GET'])
 def get_friends():
     ans = get_friends_helper(request)
+    print(ans)
+    return ans
+
+@app.route('/api/accept_friend_request',methods=['GET','POST'])
+def accept_friend_request():
+    ans = accept_friend_request_helper(request)
     print(ans)
     return ans
 

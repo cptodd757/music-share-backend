@@ -8,5 +8,5 @@ def get_friends_helper(request):
     if not user:
         return {"message":"Not authorized!"}, 401
 
-    friends = db.find_one({"username":user})["friends"]
-    return {"friends":friends}, 200
+    user_entry = db.find_one({"username":user})#["friends"]
+    return {"friends":user_entry["friends"],"friend_requests":user_entry["friend_requests"]}, 200
