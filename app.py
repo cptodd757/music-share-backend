@@ -20,10 +20,9 @@ def index():
 
 @app.route('/api/login',methods=['GET','POST'])
 def login():
-    #print('request: ', b64decode(request.headers['Authorization']))
-    ans = login_helper(request)#, bcrypt.generate_password_hash, bcrypt.check_password_hash)
+    ans = login_helper(request)
     print(ans)
-    return ans #{'login':'key'}, 200 #this works
+    return ans
 
 @app.route('/api/register',methods=['GET','POST'])
 def register():

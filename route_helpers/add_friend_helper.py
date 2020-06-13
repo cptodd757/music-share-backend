@@ -27,12 +27,6 @@ def add_friend_helper(request):
         return {"message":"This friend is waiting for you to accept their request!"}, 202
 
     # # add desired friend to user's friend list
-    # friends = db.find_one({"username":user})["friends"]
-    # new_friend = {"username":friend_username,
-    #               "songsReceived":[],
-    #               "songsSent":[]}
-    # friends.append(new_friend) 
-    # db.update_one({"username":user},{"$set":{"friends":friends}})
 
     # NEW 5/12/20: add user to other friend's friend REQUESTS list
     # add user to the other friend's friend list

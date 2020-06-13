@@ -39,9 +39,6 @@ def add_track_helper(request):
         #entry["noteworthy_timestamp"]
         entry["date_added"] = datetime.datetime.utcnow()
 
-        # songlist = db.find_one({"username":body["friend_username"]})["songs"]
-        # songlist.append(entry)
-
         # update friend's list of received songs
         db.update_one({"username": body["friend_username"], "friends.username": user},
         { "$push": 

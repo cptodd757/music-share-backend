@@ -17,7 +17,7 @@ def authorize(request):
     print('access_token',access_token)
 
     try:
-        payload = jwt.decode(access_token, SECRET_KEY)#app.config.get('SECRET_KEY'))
+        payload = jwt.decode(access_token, SECRET_KEY)#config.get('SECRET_KEY'))
         user = payload['sub']
         print(user)
         return user 
