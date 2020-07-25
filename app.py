@@ -14,10 +14,6 @@ from accept_friend_request_helper import accept_friend_request_helper
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/',methods=['GET','POST'])
-def index():
-    return {'hello':'world'}
-
 @app.route('/api/login',methods=['GET','POST'])
 def login():
     ans = login_helper(request)

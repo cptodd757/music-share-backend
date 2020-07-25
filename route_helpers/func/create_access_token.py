@@ -12,5 +12,5 @@ def create_access_token(username): #todo: what params?
               }
     #placeholder secret key
     return jwt.encode(payload,
-                      SECRET_KEY,#app.config.get('SECRET_KEY'),
+                      SECRET_KEY, #app.config.get('SECRET_KEY'),
                       algorithm='HS256')
